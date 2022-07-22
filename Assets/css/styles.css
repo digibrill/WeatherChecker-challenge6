@@ -1,0 +1,48 @@
+main{
+    width: 1200px;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+header{
+    width: 100%;
+    text-align: center;
+    display: block;
+    background: #240455;/* #3B6DC3 */
+    color: #fff;
+}
+
+aside{
+    width: 20%;
+    display: inline-block;
+}
+
+
+
+section#content{
+    width: 80%;
+    display: inline-block;
+}
+
+#searchbox{
+    width:150px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li{
+
+}
+.cityMenu{
+    background: #240455;
+    width: 200px;
+    height: 25px;
+    color: #fff;
+}
+
+.cityMenu:hover{
+    background: #33175f;
+}

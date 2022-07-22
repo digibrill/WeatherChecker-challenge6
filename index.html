@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Checker</title>
+    <link href="./Assets/css/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <main>
+    <header><!--banner-->
+        <h1>Weather Dashboard</h1>
+    </header>
+    <!-- search sidebar-->
+    <aside id="cityNav">
+        <h2>Search for a City:</h2>
+        <input type="text" id="searchbox" />
+        <button id="searchbtn">Search</button> <!--#5BA2E9-->
+        <hr>
+        <nav id="cities"> <!--#B7B7B7-->
+            <ul>
+                <li><button id="austin" class="cityMenu">Austin</button></li>
+                <li><button id="chicago" class="cityMenu">Chicago</button></li>
+                <li><button id="newyork" class="cityMenu">New York</button></li>
+                <li><button id="orlando" class="cityMenu">Orlando</button></li>
+                <li><button id="sanfranciso" class="cityMenu">San Francisco</button></li>
+                <li><button id="seattle" class="cityMenu">Seattle</button></li>
+                <li><button id="denver" class="cityMenu">Denver</button></li>
+                <li><button id="atlanta" class="cityMenu">Atlanta</button></li>
+            </ul>
+        </nav>
+    </aside>
+    <section id="content">
+        <!--Today's Weather-->
+        <section id="todaysWeather">
+            <h3 id="city">chosenCity</h3>
+            <ul>
+                <li>Temp: <span></span></li>
+                <li>Wind: <span></span></li>
+                <li>Humidity: <span></span></li>
+                <li>UV Index: <span></span></li>
+            </ul>
+        </section>
+        <!-- Five-day forecast -->
+        <section id="fiveDayForecast">
+            <h2>5-Day Forecast</h2>
+            <div class="day"><!-- #33475b -->
+                <h4 class="dayDate"></h4>
+                <div class="dayWeatherIcon"></div>
+                <ul>
+                    <li class="dayTemp">Temp: <span></span></li>
+                    <li class="dayWind">Wind: <span></span></li>
+                    <li class="dayHumid">Humidity: <span></span></li>
+                </ul>
+            </div>
+            <div class="day">
+                <h4 class="dayDate"></h4>
+                <div class="dayWeatherIcon"></div>
+                <ul>
+                    <li class="dayTemp">Temp: <span></span></li>
+                    <li class="dayWind">Wind: <span></span></li>
+                    <li class="dayHumid">Humidity: <span></span></li>
+                </ul>
+            </div>
+            <div class="day">
+                <h4 class="dayDate"></h4>
+                <div class="dayWeatherIcon"></div>
+                <ul>
+                    <li class="dayTemp">Temp: <span></span></li>
+                    <li class="dayWind">Wind: <span></span></li>
+                    <li class="dayHumid">Humidity: <span></span></li>
+                </ul>
+            </div>
+            <div class="day">
+                <h4 class="dayDate"></h4>
+                <div class="dayWeatherIcon"></div>
+                <ul>
+                    <li class="dayTemp">Temp: <span></span></li>
+                    <li class="dayWind">Wind: <span></span></li>
+                    <li class="dayHumid">Humidity: <span></span></li>
+                </ul>
+            </div>
+            <div class="day">
+                <h4 class="dayDate"></h4>
+                <div class="dayWeatherIcon"></div>
+                <ul>
+                    <li class="dayTemp">Temp: <span></span></li>
+                    <li class="dayWind">Wind: <span></span></li>
+                    <li class="dayHumid">Humidity: <span></span></li>
+                </ul>
+            </div>
+        </section>
+        </section>
+        <footer>
+        An Unassociated Press Publication
+        </footer>
+    </main>
+    <script src="./Assets/js/script.js"></script>
+</body>
+</html>
