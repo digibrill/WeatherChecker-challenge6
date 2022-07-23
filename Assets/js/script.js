@@ -10,9 +10,10 @@ var repoList = document.querySelector('ul');
 
 function getWeatherByCity(city){
     // call OpenWeather
-    var requestUrl = `api.openweathermap.org/data/2.5/forecast?q=Austin&appid=f6e84ec450237b0cd068152145e59d51`;
+    var requestUrl = `api.openweathermap.org/data/2.5/forecast?q=${city}&appid=f6e84ec450237b0cd068152145e59d51`;
     fetch(requestUrl)
         .then(function (response) {
+            console.log(response);
             return response.json();
         })
         .then(function (data) {
@@ -24,7 +25,9 @@ function getWeatherByCity(city){
         }
     });
 }
-searchBtnEl.addEventListener('click', function(){getWeatherByCity(searchTextBoxEl.textContent)});
+searchBtnEl.addEventListener('click', function(){
+    getWeatherByCity(searchTextBoxEl.textContent);
+});
 
 // date in current day
 //() =>
