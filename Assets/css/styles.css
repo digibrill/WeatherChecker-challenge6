@@ -1,48 +1,130 @@
-main{
-    width: 1200px;
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
+*{
+    font-family:Arial, Helvetica, sans-serif;
 }
 
+/* Container/wrapper */
+main{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Header */
 header{
     width: 100%;
     text-align: center;
     display: block;
     background: #240455;/* #3B6DC3 */
+    background-image: linear-gradient(to right, #3B6DC3,#240455);
     color: #fff;
+    height:70px;
 }
 
-aside{
-    width: 20%;
-    display: inline-block;
+header h1{
+    padding-top: 15px;
+    text-align: center;
 }
 
-
-
-section#content{
-    width: 80%;
-    display: inline-block;
+/* Sidebar*/
+aside h2{
+    font-size: 24px;
 }
 
 #searchbox{
-    width:150px;
+    width: 192px;
+    margin-bottom: 10px;
 }
 
-ul {
-    list-style-type: none;
+#searchbtn{
+    width: 200px;
+    background: #5ba2e9;
+    color: #fff;
+    border-radius: 7px;<br>
+    border-color: #5ba2e9;
+    border-style: none;
+    height: 25px;
 }
 
-ul li{
-
-}
-.cityMenu{
+#searchbtn:hover{
     background: #240455;
+    color: #fff;
+}
+
+aside hr{
+    width: 200px;
+    text-align: left;
+}
+
+aside ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.cityMenu{
+    background: #ddd;
     width: 200px;
     height: 25px;
-    color: #fff;
+    color: #000;
+    margin-bottom: 3px;
+    border-radius: 7px;
+    border: 1px solid #ddd;
 }
 
 .cityMenu:hover{
     background: #33175f;
+    color: #fff;
+}
+
+/*Today's weather*/
+#todaysWeather{
+    border: 1px solid #240455;
+    /*padding:20px;
+    margin:10px 0 10px 50px;*/
+}
+
+#todaysWeather h2{
+    /*width: 90%;*/
+    text-align: left;
+    font-weight: bold;
+}
+
+#todaysWeather ul{
+    text-align: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Five day forecast */
+#fiveDayForecast{
+    /*padding:10px;
+    margin:10px 0 10px 35px;*/
+}
+
+#fiveDayForecast h2{
+    width: 90%;
+    font-size: 25px;
+    text-align: left;
+    font-weight: bold;
+}
+
+#fiveDayForecast ul{
+    text-align: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.day{
+    background-color:#33475b;
+    color: #fff;
+    font-weight:bold;
+    /*margin-right: 20px;*/
+}
+
+/* Footer */
+footer{
+    text-align: center;
+    font-size: 11px;
+    width: 100%;
 }

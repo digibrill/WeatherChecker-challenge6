@@ -5,17 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Checker</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
     <link href="./Assets/css/styles.css" rel="stylesheet" />
 </head>
 <body>
-    <main>
-    <header><!--banner-->
+  <main class="container">
+    <header class="container"><!--banner-->
         <h1>Weather Dashboard</h1>
     </header>
-    <!-- search sidebar-->
-    <aside id="cityNav">
+    <!-- search sidebar--> 
+    <aside id="cityNav" class="col-3">
         <h2>Search for a City:</h2>
-        <input type="text" id="searchbox" />
+        <input type="text" id="searchbox" placeholder="San Diego"/><br>
         <button id="searchbtn">Search</button> <!--#5BA2E9-->
         <hr>
         <nav id="cities"> <!--#B7B7B7-->
@@ -31,10 +32,11 @@
             </ul>
         </nav>
     </aside>
-    <section id="content">
+    <section id="content" class="row col-9">
+
         <!--Today's Weather-->
-        <section id="todaysWeather">
-            <h3 id="city">chosenCity</h3>
+        <section id="todaysWeather" class="col-9">
+            <h2><span id="city">City</span> (<span id="todaysDate"></span>) <span class="dayWeatherIcon"></span></h2>
             <ul>
                 <li>Temp: <span></span></li>
                 <li>Wind: <span></span></li>
@@ -42,10 +44,23 @@
                 <li>UV Index: <span></span></li>
             </ul>
         </section>
+
         <!-- Five-day forecast -->
-        <section id="fiveDayForecast">
-            <h2>5-Day Forecast</h2>
-            <div class="day"><!-- #33475b -->
+        <section id="fiveDayForecast" class="col-9 container row">
+
+            <div class="col-12 row">
+                <h2 class="col">5-Day Forecast:</h2>
+            </div>
+            <div class="day col">
+                <h4 class="dayDate"></h4>
+                <div class="dayWeatherIcon"></div>
+                <ul>
+                    <li class="dayTemp">Temp: <span>HOT</span></li>
+                    <li class="dayWind">Wind: <span>Brrrrrr</span></li>
+                    <li class="dayHumid">Humidity: <span>sweaty!</span></li>
+                </ul>
+            </div>
+            <div class="day col">
                 <h4 class="dayDate"></h4>
                 <div class="dayWeatherIcon"></div>
                 <ul>
@@ -54,7 +69,7 @@
                     <li class="dayHumid">Humidity: <span></span></li>
                 </ul>
             </div>
-            <div class="day">
+            <div class="day col">
                 <h4 class="dayDate"></h4>
                 <div class="dayWeatherIcon"></div>
                 <ul>
@@ -63,7 +78,7 @@
                     <li class="dayHumid">Humidity: <span></span></li>
                 </ul>
             </div>
-            <div class="day">
+            <div class="day col">
                 <h4 class="dayDate"></h4>
                 <div class="dayWeatherIcon"></div>
                 <ul>
@@ -72,7 +87,7 @@
                     <li class="dayHumid">Humidity: <span></span></li>
                 </ul>
             </div>
-            <div class="day">
+            <div class="day col">
                 <h4 class="dayDate"></h4>
                 <div class="dayWeatherIcon"></div>
                 <ul>
@@ -81,21 +96,15 @@
                     <li class="dayHumid">Humidity: <span></span></li>
                 </ul>
             </div>
-            <div class="day">
-                <h4 class="dayDate"></h4>
-                <div class="dayWeatherIcon"></div>
-                <ul>
-                    <li class="dayTemp">Temp: <span></span></li>
-                    <li class="dayWind">Wind: <span></span></li>
-                    <li class="dayHumid">Humidity: <span></span></li>
-                </ul>
-            </div>
+
         </section>
         </section>
         <footer>
         An Unassociated Press Publication
         </footer>
-    </main>
-    <script src="./Assets/js/script.js"></script>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="./Assets/js/script.js"></script>
 </body>
 </html>

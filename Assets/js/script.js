@@ -1,19 +1,42 @@
+// Page Elements
+
 var searchTextBoxEl = document.getElementById('searchbox');
 //var searchOptionsEl = document.getElementById('searchoptions');
 var searchBtnEl = document.getElementById('searchbtn');
+document.getElementById('todaysDate').textContent = moment().format("MM/DD/YYYY");
 
-searchBtnEl.addEventListener('submit', sendToResultsPg);
-function sendToResultsPg(e){
-    console.log('test');
-    var searchPhrase = searchTextBoxEl.textContent;
-    //var searchOption = searchOptionsEl.selectedIndex;
-   // if(searchOption !== ''){
-        location.replace('search-results.html?q=' + searchPhrase + '&format=' + searchOption);
-  //  }else{
-      //  location.replace('search-results.html?q=' + searchPhrase + '&format=');
-  //  }
+var currentTime = moment().format('HH');
+var repoList = document.querySelector('ul');
+var fetchButton = document.getElementById('fetch-button');
+
+function getWeatherByCity(city){
+    // call OpenWeather
+    var requestUrl = `api.openweathermap.org/data/2.5/forecast?q=${city}&appid=f6e84ec450237b0cd068152145e59d51`;
+    fetch(requestUrl)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+        for (var i = 0; i < data.length; i++) {
+            var listItem = document.createElement('li');
+            listItem.textContent = data[i].html_url;
+            repoList.appendChild(listItem);
+        }
+    });
 }
+searchBtnEl.addEventListener('click', function(){getWeatherByCity(searchTextBoxEl.textContent)});
 
+// date in current day
+//() =>
+
+
+/**
+api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=f6e84ec450237b0cd068152145e59d51
+currentweather - https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
+5-day - api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+5-day with city name - api.openweathermap.org/data/2.5/forecast?q={city name}&appid=f6e84ec450237b0cd068152145e59d51
+
+*/
 /**
 GIVEN a weather dashboard with form inputs
 WHEN I search for a city
