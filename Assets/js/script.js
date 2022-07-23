@@ -7,20 +7,20 @@ document.getElementById('todaysDate').textContent = moment().format("MM/DD/YYYY"
 
 var currentTime = moment().format('HH');
 var repoList = document.querySelector('ul');
-var fetchButton = document.getElementById('fetch-button');
 
 function getWeatherByCity(city){
     // call OpenWeather
-    var requestUrl = `api.openweathermap.org/data/2.5/forecast?q=${city}&appid=f6e84ec450237b0cd068152145e59d51`;
+    var requestUrl = `api.openweathermap.org/data/2.5/forecast?q=Austin&appid=f6e84ec450237b0cd068152145e59d51`;
     fetch(requestUrl)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
         for (var i = 0; i < data.length; i++) {
-            var listItem = document.createElement('li');
+            console.log(data[i]);
+            /*var listItem = document.createElement('li');
             listItem.textContent = data[i].html_url;
-            repoList.appendChild(listItem);
+            repoList.appendChild(listItem);*/
         }
     });
 }
