@@ -1,35 +1,76 @@
 // Page Elements
 
 var searchTextBoxEl = document.getElementById('searchbox');
-//var searchOptionsEl = document.getElementById('searchoptions');
 var searchBtnEl = document.getElementById('searchbtn');
 document.getElementById('todaysDate').textContent = moment().format("MM/DD/YYYY");
-
+var cityEl = document.getElementById('cityName');
 var currentTime = moment().format('HH');
 var repoList = document.querySelector('ul');
+var todayTempEl = document.getElementById('todayTemp');
+var todayWindEl = document.getElementById('todayWind');
+var todayHumidEl = document.getElementById('todayHumid');
+var todayIconEl = document.getElementById('todayIcon');
+
+/* Five day arrays */
+var fiveDayDates = document.querySelectorAll('.dayDate');
+var fiveDayWeatherIcons = document.querySelectorAll('.dayWeatherIcon');
+var fiveDayTemps = document.querySelectorAll('.dayTemp');
+var fiveDayWinds = document.querySelectorAll('.dayWind');
+var fiveDayHumids = document.querySelectorAll('.dayHumid');
+
+/* Five Day Forecast */
+function getForecastByCity(city){
+    
+    var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=f6e84ec450237b0cd068152145e59d51`;
+    fetch(requestUrl)
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+        for (var i = 0; i < data.list.length; i++) {
+            var dateHdr = data.list[i].dt;
+            fiveDayDates[i].textContent = moment.unix(dateHdr).format("MM/DD/YYYY");
+            fiveDayTemps[i].textContent = data.list[i].main.temp;
+            fiveDayWinds[i].textContent = data.list[i].wind.speed;
+            fiveDayHumids[i].textContent = data.list[i].main.humidity + '%';
+            fiveDayWeatherIcons[i].innerHTML = `<img src="http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" width="70" height="70">`;
+        }
+     })
+}
 
 function getWeatherByCity(city){
     // call OpenWeather
-    var requestUrl = `api.openweathermap.org/data/2.5/forecast?q=Austin&appid=f6e84ec450237b0cd068152145e59d51`;
+    var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=f6e84ec450237b0cd068152145e59d51`;
     fetch(requestUrl)
         .then(function (response) {
-            console.log(response);
             return response.json();
         })
         .then(function (data) {
-        for (var i = 0; i < data.length; i++) {
-            console.log(data[i]);
-            /*var listItem = document.createElement('li');
-            listItem.textContent = data[i].html_url;
-            repoList.appendChild(listItem);*/
-        }
-    });
+                cityEl.textContent = decodeURIComponent(data.name);
+                todayTempEl.textContent = data.main.temp;
+                todayWindEl.textContent = data.wind.speed;
+                todayHumidEl.textContent = data.main.humidity + '%';
+                todayIconEl.textContent = data.icon;
+                todayIconEl.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" width="70" height="70">`;
+            })
+        getForecastByCity(city);
 }
+function getWeatherByCityMenu(){
+    var cityMenu = document.querySelectorAll('#cities li button');
+    for(j = 0; j < cityMenu.length; j++){
+        cityMenu[j].addEventListener('click',function(e){
+            var chosenCity = encodeURIComponent(e.target.id);
+            getWeatherByCity(chosenCity);
+        });
+    }
+}
+getWeatherByCityMenu();
 
 searchBtnEl.addEventListener('click', function(){
-    getWeatherByCity(searchTextBoxEl.textContent);
+    getWeatherByCity(searchTextBoxEl.value);
 });
 
+getWeatherByCity('San Diego');
 // date in current day
 //() =>
 
