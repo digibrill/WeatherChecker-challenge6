@@ -21,21 +21,23 @@ var fiveDayHumids = document.querySelectorAll('.dayHumid');
 /* Five Day Forecast */
 function getForecastByCity(city){
     
-    var requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=f6e84ec450237b0cd068152145e59d51`;
+    var requestUrl = `https://api.openweathermap.org/data/2.5/forecast/daily?q=${city}&units=imperial&cnt=5&appid=f6e84ec450237b0cd068152145e59d51`;
     fetch(requestUrl)
     .then(function (response) {
         return response.json();
     })
     .then(function (data) {
+        console.log(data.list.length);
         for (var i = 0; i < data.list.length; i++) {
+            console.log(data.list[i]);
             var dateHdr = data.list[i].dt;
-            fiveDayDates[i].textContent = moment.unix(dateHdr).format("MM/DD/YYYY");
-            fiveDayTemps[i].textContent = data.list[i].main.temp;
+            fiveDayDates[i].textContent = moment.unix(dateHdr);//data.time.day;//moment.unix(dateHdr).format("MM/DD/YYYY");
+            //fiveDayTemps[i].textContent = data.list[i].temp.day;
             fiveDayWinds[i].textContent = data.list[i].wind.speed;
             fiveDayHumids[i].textContent = data.list[i].main.humidity + '%';
             fiveDayWeatherIcons[i].innerHTML = `<img src="http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" width="70" height="70">`;
         }
-     })
+    })
 }
 
 function getWeatherByCity(city){
