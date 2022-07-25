@@ -46,7 +46,7 @@ function getForecastByCity(city){
             fiveDayTemps[i].textContent = data.list[i].main.temp;
             fiveDayWinds[i].textContent = data.list[i].wind.speed;
             fiveDayHumids[i].textContent = data.list[i].main.humidity + '%';
-            fiveDayWeatherIcons[i].innerHTML = `<img src="http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" width="70" height="70">`;
+            fiveDayWeatherIcons[i].innerHTML = `<img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" width="70" height="70">`;
         }
     })
 }
@@ -64,7 +64,7 @@ function getWeatherByCity(city){
                 todayWindEl.textContent = data.wind.speed;
                 todayHumidEl.textContent = data.main.humidity + '%';
                 todayIconEl.textContent = data.icon;
-                todayIconEl.innerHTML = `<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" width="70" height="70">`;
+                todayIconEl.innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" width="70" height="70">`;
             })
         getForecastByCity(city);
 }
