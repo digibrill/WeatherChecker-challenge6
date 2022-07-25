@@ -21,7 +21,7 @@ var fiveDayHumids = document.querySelectorAll('.dayHumid');
 /* Five Day Forecast */
 function getForecastByCity(city){
     var requestUrl;
-    var geoRequestUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=f6e84ec450237b0cd068152145e59d51`;
+    var geoRequestUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=f6e84ec450237b0cd068152145e59d51`;
     fetch(geoRequestUrl)
     .then(function (response) {
         return response.json();
