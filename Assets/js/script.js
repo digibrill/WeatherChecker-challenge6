@@ -40,7 +40,7 @@ function getForecastByCity(city){
         })
         .then(function (data2) {
             console.log(data2);
-            for (var i = 0; i < 5; i++) {\
+            for (var i = 0; i < 5; i++) {
                 var dateHdr = data2.daily[i].dt;
                 fiveDayDates[i].textContent = moment.unix(dateHdr);
                 fiveDayTemps[i].textContent = data2.daily[i].temp.day;
