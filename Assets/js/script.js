@@ -34,19 +34,19 @@ function getForecastByCity(city){
         //`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&cnt=5&appid=f6e84ec450237b0cd068152145e59d51`;
     });
     fetch(requestUrl)
-    .then(function (response) {
-        return response.json();
+    .then(function (response2) {
+        return response2.json();
     })
-    .then(function (data) {
-        //console.log(data);
-        for (var i = 0; i < data.list.length; i++) {
+    .then(function (data2) {
+        
+        for (var i = 0; i < data2.list.length; i++) {
             //console.log(data.list[i]);
-            var dateHdr = data.list[i].dt;
+            var dateHdr = data2.list[i].dt;
             fiveDayDates[i].textContent = moment.unix(dateHdr);//data.time.day;//moment.unix(dateHdr).format("MM/DD/YYYY");
-            fiveDayTemps[i].textContent = data.list[i].main.temp;
-            fiveDayWinds[i].textContent = data.list[i].wind.speed;
-            fiveDayHumids[i].textContent = data.list[i].main.humidity + '%';
-            fiveDayWeatherIcons[i].innerHTML = `<img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png" width="70" height="70">`;
+            fiveDayTemps[i].textContent = data2.list[i].main.temp;
+            fiveDayWinds[i].textContent = data2.list[i].wind.speed;
+            fiveDayHumids[i].textContent = data2.list[i].main.humidity + '%';
+            fiveDayWeatherIcons[i].innerHTML = `<img src="https://openweathermap.org/img/wn/${data2.list[i].weather[0].icon}@2x.png" width="70" height="70">`;
         }
     })
 }
