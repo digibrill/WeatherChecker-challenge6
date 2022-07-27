@@ -67,8 +67,8 @@ function getForecastByCity(city){
             
             // Populate today's weather 
             cityEl.textContent = decodeURIComponent(city);
-            todayTempEl.textContent = data2.daily[0].temp.day;
-            todayWindEl.textContent = data2.daily[0].wind_speed;
+            todayTempEl.textContent = data2.daily[0].temp.day + 'F';
+            todayWindEl.textContent = data2.daily[0].wind_speed + ' MPH';
             todayHumidEl.textContent = data2.daily[0].humidity + '%';
             todayIconEl.innerHTML = `<img src="https://openweathermap.org/img/wn/${data2.daily[0].weather[0].icon}@2x.png" width="70" height="70">`;
             todayUVIEl.textContent = data2.daily[0].uvi;
@@ -89,8 +89,8 @@ function getForecastByCity(city){
             for (var i = 0; i < 5; i++) {
                     var dateHdr = moment.unix(data2.daily[i].dt).format("MM/DD/YYYY");
                     fiveDayDates[i].textContent = dateHdr;
-                    fiveDayTemps[i].textContent = data2.daily[i].temp.day;
-                    fiveDayWinds[i].textContent = data2.daily[i].wind_speed;
+                    fiveDayTemps[i].textContent = data2.daily[i].temp.day  + 'F';
+                    fiveDayWinds[i].textContent = data2.daily[i].wind_speed + ' MPH';
                     fiveDayHumids[i].textContent = data2.daily[i].humidity + '%';
                     fiveDayWeatherIcons[i].innerHTML = `<img src="https://openweathermap.org/img/wn/${data2.daily[i].weather[0].icon}@2x.png" width="70" height="70">`;
             }
@@ -120,11 +120,11 @@ function getForecastByCity(city){
         })
     })
 }
-//getForecastByCityMenu();
 
-
+// Search button listener
 searchBtnEl.addEventListener('click', function(){
     getForecastByCity(searchTextBoxEl.value);
 });
 
+// Initialize
 getForecastByCity('San Diego');
