@@ -5,7 +5,7 @@ This was a great combination of prior learned and new material. I hope I did it 
 
 I hope this works right!
 
-![portfolio demo](./Assets/images/screencap.png)
+![weather dashboard demo](./Assets/images/screencap.png)
 
 ## My links
 
