@@ -10,6 +10,7 @@ var todayTempEl = document.getElementById('todayTemp');
 var todayWindEl = document.getElementById('todayWind');
 var todayHumidEl = document.getElementById('todayHumid');
 var todayIconEl = document.getElementById('todayIcon');
+var todayUVIEl = document.getElementById('todayUVI');
 
 /* Five day arrays */
 var fiveDayDates = document.querySelectorAll('.dayDate');
@@ -18,8 +19,35 @@ var fiveDayTemps = document.querySelectorAll('.dayTemp');
 var fiveDayWinds = document.querySelectorAll('.dayWind');
 var fiveDayHumids = document.querySelectorAll('.dayHumid');
 
+/* add event handlers to city menu */
+/*function getForecastByCityMenu(){
+    var cityMenu = document.querySelectorAll('#citiesbtns li button');
+    console.log(cityMenu.length);
+    for(j = 0; j < cityMenu.length; j++){ 
+        cityMenu[j].addEventListener('click',function(e){
+            console.log(e.target.id);
+            var chosenCity = encodeURIComponent(e.target.id);
+            getForecastByCity(chosenCity);
+        });
+    }
+}*/
+
+// Assign button listeners
+function assignButtonListeners(){
+    var cityMenuForEventListeners = document.querySelectorAll('#citiesbtns li button');
+    for(var k = 0; k < cityMenuForEventListeners.length; k++){                
+        cityMenuForEventListeners[k].addEventListener('click',function(e){
+            console.log('test');
+            var chosenCityForEventListeners = e.target.id;
+            getForecastByCity(chosenCityForEventListeners);
+        })
+    }
+}
+
 /* Five Day Forecast */
 function getForecastByCity(city){
+
+    // Get city lat/lon
     var geoRequestUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=f6e84ec450237b0cd068152145e59d51`;
     fetch(geoRequestUrl)
     .then(function (response) {
@@ -28,95 +56,75 @@ function getForecastByCity(city){
     .then(function (data) {
         var lat = data[0].lat;
         var lon = data[0].lon;
-        console.log(lat, lon);
-        //`https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&exclude=hourly&appid=f6e84ec450237b0cd068152145e59d51`;
-        //`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&cnt=5&appid=f6e84ec450237b0cd068152145e59d51`;
-    
-        var requestUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly&units=imperial&appid=f6e84ec450237b0cd068152145e59d51`;
-        console.log(requestUrl);
+        
+        // Call API with lat/lon
+        var requestUrl = `https://api.openweathermap.org/data/2.5/onecall?units=imperial&lat=${lat}&lon=${lon}&exclude=hourly&appid=c0070d7dc98501d324857402a8b6ca5d`;
         fetch(requestUrl)
         .then(function (response2) {
             return response2.json();
         })
         .then(function (data2) {
-            console.log(data2);
-            for (var i = 0; i < 5; i++) {
-                var dateHdr = data2.daily[i].dt;
-                fiveDayDates[i].textContent = moment.unix(dateHdr);
-                fiveDayTemps[i].textContent = data2.daily[i].temp.day;
-                fiveDayWinds[i].textContent = data2.daily[i].wind_speed;
-                fiveDayHumids[i].textContent = data2.daily[i].humidity + '%';
-                fiveDayWeatherIcons[i].innerHTML = `<img src="https://openweathermap.org/img/wn/${data2.daily[i].weather[0].icon}@2x.png" width="70" height="70">`;
+            
+            // Populate today's weather 
+            cityEl.textContent = decodeURIComponent(city);
+            todayTempEl.textContent = data2.daily[0].temp.day;
+            todayWindEl.textContent = data2.daily[0].wind_speed;
+            todayHumidEl.textContent = data2.daily[0].humidity + '%';
+            todayIconEl.innerHTML = `<img src="https://openweathermap.org/img/wn/${data2.daily[0].weather[0].icon}@2x.png" width="70" height="70">`;
+            todayUVIEl.textContent = data2.daily[0].uvi;
+
+            // UVI background color
+            if(data2.daily[0].uvi > 6){
+                todayUVIEl.style.backgroundColor = '#f00';
+                todayUVIEl.style.color = '#fff';
+            }else if(data2.daily[0].uvi <= 6 && data2.daily[0].uvi > 3){
+                todayUVIEl.style.color = '#000';
+                todayUVIEl.style.backgroundColor = '#ff0';
+            }else{
+                todayUVIEl.style.backgroundColor = '#0f0';
+                todayUVIEl.style.color = '#fff';
             }
+
+            //Populate 5-day
+            for (var i = 0; i < 5; i++) {
+                    var dateHdr = moment.unix(data2.daily[i].dt).format("MM/DD/YYYY");
+                    fiveDayDates[i].textContent = dateHdr;
+                    fiveDayTemps[i].textContent = data2.daily[i].temp.day;
+                    fiveDayWinds[i].textContent = data2.daily[i].wind_speed;
+                    fiveDayHumids[i].textContent = data2.daily[i].humidity + '%';
+                    fiveDayWeatherIcons[i].innerHTML = `<img src="https://openweathermap.org/img/wn/${data2.daily[i].weather[0].icon}@2x.png" width="70" height="70">`;
+            }
+            
+            // Get all city history buttons
+            var cityMenu = document.querySelectorAll('#citiesbtns li button');
+
+            // Set "already added" flag
+            var alreadyAdded = false;
+
+            // If any matches between default buttons and new one, set "already added" flag to true
+            for(var j = 0; j < cityMenu.length; j++){
+                if(city.toUpperCase() == cityMenu[j].id.toUpperCase()){
+                    console.log('found duplicate');
+                    alreadyAdded = true;
+                }
+            }
+
+            // Add new button
+            if(alreadyAdded == false){
+                console.log('add new node');
+                document.getElementById("citiesbtns").innerHTML += `<li><button id="${city}" class="cityMenu">${city}</button></li>`;
+                alreadyAdded = true;
+            }
+            // Reassign
+            assignButtonListeners();
         })
     })
 }
+//getForecastByCityMenu();
 
-function getWeatherByCity(city){
-    // call OpenWeather
-    var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=f6e84ec450237b0cd068152145e59d51`;
-    fetch(requestUrl)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-                cityEl.textContent = decodeURIComponent(data.name);
-                todayTempEl.textContent = data.main.temp;
-                todayWindEl.textContent = data.wind.speed;
-                todayHumidEl.textContent = data.main.humidity + '%';
-                todayIconEl.textContent = data.icon;
-                todayIconEl.innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" width="70" height="70">`;
-            })
-        getForecastByCity(city);
-}
-function getWeatherByCityMenu(){
-    var cityMenu = document.querySelectorAll('#cities li button');
-    for(j = 0; j < cityMenu.length; j++){
-        cityMenu[j].addEventListener('click',function(e){
-            var chosenCity = encodeURIComponent(e.target.id);
-            getWeatherByCity(chosenCity);
-        });
-    }
-}
-getWeatherByCityMenu();
 
 searchBtnEl.addEventListener('click', function(){
-    getWeatherByCity(searchTextBoxEl.value);
+    getForecastByCity(searchTextBoxEl.value);
 });
 
-getWeatherByCity('San Diego');
-// date in current day
-//() =>
-
-
-/**
-api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=f6e84ec450237b0cd068152145e59d51
-currentweather - https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}
-5-day - api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-5-day with city name - api.openweathermap.org/data/2.5/forecast?q={city name}&appid=f6e84ec450237b0cd068152145e59d51
-
-*/
-/**
-GIVEN a weather dashboard with form inputs
-WHEN I search for a city
-THEN I am presented with current and future conditions for that city and that city is added to the search history
-WHEN I view current weather conditions for that city
-THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-WHEN I view the UV index
-THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-WHEN I view future weather conditions for that city
-THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-WHEN I click on a city in the search history
-THEN I am again presented with current and future conditions for that city
-*/
-
-
-
-
-
-
-/* A form with a text input field to capture a search query and an option
-select dropdown to capture the format of the search query. The options in
-the dropdown should be a list of the possible format values listed in the
-[Library of Congress API documentation on requests]
-(https://libraryofcongress.github.io/data-exploration/requests.html#format).*/
+getForecastByCity('San Diego');

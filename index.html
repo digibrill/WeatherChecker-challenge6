@@ -10,98 +10,108 @@
 </head>
 <body>
   <main class="container">
-    <header class="container"><!--banner-->
+
+    <header class=""><!--banner-->
         <h1>Weather Dashboard</h1>
     </header>
+
     <!-- search sidebar--> 
-    <aside id="cityNav" class="col-3">
-        <h2>Search for a City:</h2>
-        <input type="text" id="searchbox" placeholder="San Diego"/><br>
-        <button id="searchbtn">Search</button> <!--#5BA2E9-->
-        <hr>
-        <nav id="cities"> <!--#B7B7B7-->
-            <ul>
-                <li><button id="austin" class="cityMenu">Austin</button></li>
-                <li><button id="chicago" class="cityMenu">Chicago</button></li>
-                <li><button id="new york" class="cityMenu">New York</button></li>
-                <li><button id="orlando" class="cityMenu">Orlando</button></li>
-                <li><button id="san francisco" class="cityMenu">San Francisco</button></li>
-                <li><button id="seattle" class="cityMenu">Seattle</button></li>
-                <li><button id="denver" class="cityMenu">Denver</button></li>
-                <li><button id="atlanta" class="cityMenu">Atlanta</button></li>
-            </ul>
-        </nav>
-    </aside>
-    <section id="content" class="row col-9">
+    <section class="row container no-gutters">
 
-        <!--Today's Weather-->
-        <section id="todaysWeather" class="col-9">
-            <h2><span id="cityName">City</span> (<span id="todaysDate"></span>) <span id="todayIcon"></span></h2>
-            <ul>
-                <li>Temp: <span id="todayTemp"></span></li>
-                <li>Wind: <span id="todayWind"></span></li>
-                <li>Humidity: <span id="todayHumid"></span></li>
-                <!--<li>UV Index: <span id="todayUVI"></span></li>-->
-            </ul>
+        <!-- Sidebar nav -->
+        <aside id="cityNav" class="col-md-3">
+            <h2>Search for a City:</h2>
+
+            <!-- Search box -->
+            <input type="text" id="searchbox" placeholder="San Diego"/><br>
+            <button id="searchbtn">Search</button>
+            <hr>
+
+            <!-- City History -->
+            <nav id="cities">
+                <ul id="citiesbtns">
+                    <li><button id="Austin" class="cityMenu">Austin</button></li>
+                    <li><button id="Chicago" class="cityMenu">Chicago</button></li>
+                    <li><button id="New York" class="cityMenu">New York</button></li>
+                    <li><button id="Orlando" class="cityMenu">Orlando</button></li>
+                    <li><button id="San Francisco" class="cityMenu">San Francisco</button></li>
+                    <li><button id="Seattle" class="cityMenu">Seattle</button></li>
+                    <li><button id="Denver" class="cityMenu">Denver</button></li>
+                    <li><button id="Atlanta" class="cityMenu">Atlanta</button></li>
+                </ul>
+            </nav>
+        </aside>
+        <section id="content" class="col-md-9">
+
+            <!--Today's Weather-->
+            <section id="todaysWeather" class="">
+                <h2><span id="cityName">City</span> (<span id="todaysDate"></span>) <span id="todayIcon"></span></h2>
+                <ul>
+                    <li>Temp: <span id="todayTemp"></span></li>
+                    <li>Wind: <span id="todayWind"></span></li>
+                    <li>Humidity: <span id="todayHumid"></span></li>
+                    <li>UV Index: <span id="todayUVI"></span></li>
+                </ul>
+            </section>
+
+            <!-- Five-day forecast -->                
+            <div class="">
+                <h2 class="">5-Day Forecast:</h2>
+            </div>
+            <section id="fiveDayForecast" class="row">
+
+                <div class="day col">
+                    <h4 class="dayDate"></h4>
+                    <div class="dayWeatherIcon"></div>
+                    <ul>
+                        <li>Temp: <span class="dayTemp">HOT</span></li>
+                        <li>Wind: <span class="dayWind">Brrrrrr</span></li>
+                        <li>Humidity: <span class="dayHumid">sweaty!</span></li>
+                    </ul>
+                </div>
+                <div class="day col">
+                    <h4 class="dayDate"></h4>
+                    <div class="dayWeatherIcon"></div>
+                    <ul>
+                        <li>Temp: <span class="dayTemp">HOT</span></li>
+                        <li>Wind: <span class="dayWind">Brrrrrr</span></li>
+                        <li>Humidity: <span class="dayHumid">sweaty!</span></li>
+                    </ul>
+                </div>
+                <div class="day col">
+                    <h4 class="dayDate"></h4>
+                    <div class="dayWeatherIcon"></div>
+                    <ul>
+                        <li>Temp: <span class="dayTemp">HOT</span></li>
+                        <li>Wind: <span class="dayWind">Brrrrrr</span></li>
+                        <li>Humidity: <span class="dayHumid">sweaty!</span></li>
+                    </ul>
+                </div>
+                <div class="day col">
+                    <h4 class="dayDate"></h4>
+                    <div class="dayWeatherIcon"></div>
+                    <ul>
+                        <li>Temp: <span class="dayTemp">HOT</span></li>
+                        <li>Wind: <span class="dayWind">Brrrrrr</span></li>
+                        <li>Humidity: <span class="dayHumid">sweaty!</span></li>
+                    </ul>
+                </div>
+                <div class="day col">
+                    <h4 class="dayDate"></h4>
+                    <div class="dayWeatherIcon"></div>
+                    <ul>
+                        <li>Temp: <span class="dayTemp">HOT</span></li>
+                        <li>Wind: <span class="dayWind">Brrrrrr</span></li>
+                        <li>Humidity: <span class="dayHumid">sweaty!</span></li>
+                    </ul>
+                </div>
+
+            </section>
         </section>
-
-        <!-- Five-day forecast -->
-        <section id="fiveDayForecast" class="col-9 container row">
-
-            <div class="col-12 row">
-                <h2 class="col">5-Day Forecast:</h2>
-            </div>
-            <div class="day col">
-                <h4 class="dayDate"></h4>
-                <div class="dayWeatherIcon"></div>
-                <ul>
-                    <li>Temp: <span class="dayTemp">HOT</span></li>
-                    <li>Wind: <span class="dayWind">Brrrrrr</span></li>
-                    <li>Humidity: <span class="dayHumid">sweaty!</span></li>
-                </ul>
-            </div>
-            <div class="day col">
-                <h4 class="dayDate"></h4>
-                <div class="dayWeatherIcon"></div>
-                <ul>
-                    <li>Temp: <span class="dayTemp">HOT</span></li>
-                    <li>Wind: <span class="dayWind">Brrrrrr</span></li>
-                    <li>Humidity: <span class="dayHumid">sweaty!</span></li>
-                </ul>
-            </div>
-            <div class="day col">
-                <h4 class="dayDate"></h4>
-                <div class="dayWeatherIcon"></div>
-                <ul>
-                    <li>Temp: <span class="dayTemp">HOT</span></li>
-                    <li>Wind: <span class="dayWind">Brrrrrr</span></li>
-                    <li>Humidity: <span class="dayHumid">sweaty!</span></li>
-                </ul>
-            </div>
-            <div class="day col">
-                <h4 class="dayDate"></h4>
-                <div class="dayWeatherIcon"></div>
-                <ul>
-                    <li>Temp: <span class="dayTemp">HOT</span></li>
-                    <li>Wind: <span class="dayWind">Brrrrrr</span></li>
-                    <li>Humidity: <span class="dayHumid">sweaty!</span></li>
-                </ul>
-            </div>
-            <div class="day col">
-                <h4 class="dayDate"></h4>
-                <div class="dayWeatherIcon"></div>
-                <ul>
-                    <li>Temp: <span class="dayTemp">HOT</span></li>
-                    <li>Wind: <span class="dayWind">Brrrrrr</span></li>
-                    <li>Humidity: <span class="dayHumid">sweaty!</span></li>
-                </ul>
-            </div>
-
-        </section>
-        </section>
-        <footer>
-        An Unassociated Press Publication
-        </footer>
+    </section>
+    <footer>
+      An Unassociated Press Publication
+    </footer>
   </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

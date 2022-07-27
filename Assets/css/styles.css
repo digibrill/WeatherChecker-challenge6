@@ -25,17 +25,24 @@ header h1{
 }
 
 /* Sidebar*/
+aside{
+    margin-top: 20px;
+    padding-right: 20px;
+}
+
 aside h2{
     font-size: 24px;
 }
 
 #searchbox{
-    width: 192px;
+    width: 100%;
+    max-width: 192px;
     margin-bottom: 10px;
 }
 
 #searchbtn{
-    width: 200px;
+    width: 100%;
+    max-width: 200px;
     background: #5ba2e9;
     color: #fff;
     border-radius: 7px;<br>
@@ -62,7 +69,8 @@ aside ul {
 
 .cityMenu{
     background: #ddd;
-    width: 200px;
+    width: 100%;
+    max-width: 200px;
     height: 25px;
     color: #000;
     margin-bottom: 3px;
@@ -78,8 +86,9 @@ aside ul {
 /*Today's weather*/
 #todaysWeather{
     border: 1px solid #240455;
-    /*padding:20px;
-    margin:10px 0 10px 50px;*/
+    padding:0 20px 20px;
+    margin-top: 20px;
+    /*margin:10px 0 10px 50px;*/
 }
 
 #todaysWeather h2{
@@ -94,9 +103,14 @@ aside ul {
     margin: 0;
     padding: 0;
 }
-
+#todayUVI{
+    padding:5px;
+    border-radius: 7px;
+    color: #fff;
+}
 /* Five day forecast */
 #fiveDayForecast{
+    margin-left: 0;
     /*padding:10px;
     margin:10px 0 10px 35px;*/
 }
